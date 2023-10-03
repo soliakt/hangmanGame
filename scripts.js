@@ -69,7 +69,7 @@ window.onload = function () {
         for (var f = 0; f < wordLenght; f++) wordInDiscovery += arrayWordInProgress[f];
         if (correctLetter == false) remainingLives--
         else if (availableLetters == 0) gamePassedPopUp();
-        else if (remainingLives < 1) gameOverPopUp();
+        if (remainingLives < 1) gameOverPopUp();
 
         // Obtener el elemento del texto (h4) que vamos a sustituir por nuestra palabra oculta
         const wordInHTML = document.getElementById('hiddenWord');
