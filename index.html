@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorcado</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!--SWAL LINKS (biblioteca de javascript)-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <div>
+        <div id="initialContent" class="text-center">
+            <h1>El AHORCADO</h1>
+            <p>The game</p>
+            <button class="btn btn-danger" id="playButton">JUGAR</button>
+        </div>
+
+        <div id="gameContent" class="gameContent">
+            <div class="gameContent__hanging">
+                <div class="puppet" id="6"><img src="../imgs/6.jpeg" alt=""></div>
+                <div class="puppet" id="5"><img src="../imgs/5.jpeg" alt=""></div>
+                <div class="puppet" id="4"><img src="../imgs/4.jpeg" alt=""></div>
+                <div class="puppet" id="3"><img src="../imgs/3.jpeg" alt=""></div>
+                <div class="puppet" id="2"><img src="../imgs/2.jpeg" alt=""></div>
+                <div class="puppet" id="1"><img src="../imgs/1.jpeg" alt=""></div>
+                <div class="puppet" id="0"><img src="../imgs/0.jpeg" alt=""></div>
+            </div>
+            <div class="gameContent__letters">
+                <div class="gameContent__letters__hiddenWord">
+                    <h4 id="availableLives"></h4>
+                    <h4 id="hiddenWord"></h4>
+                </div>
+                <div class="gameContent__letters__lettersThemselves">
+                    <table>
+                        <tr class="letters">
+                            <td><button type="button" class="btn btn-warning" id="a">A</button></td>
+                            <td><button type="button" class="btn btn-warning" id="b">B</button></td>
+                            <td><button type="button" class="btn btn-warning" id="c">C</button></td>
+                            <td><button type="button" class="btn btn-warning" id="d">D</button></td>
+                        </tr>
+                        <tr class="letters">
+                            <td><button type="button" class="btn btn-warning" id="e">E</button></td>
+                            <td><button type="button" class="btn btn-warning" id="f">F</button></td>
+                            <td><button type="button" class="btn btn-warning" id="g">G</button></td>
+                            <td><button type="button" class="btn btn-warning" id="h">H</button></td>
+                            <td><button type="button" class="btn btn-warning" id="i">I</button></td>
+                            <td><button type="button" class="btn btn-warning" id="j">J</button></td>
+                        </tr>
+                        <tr class="letters">
+                            <td><button type="button" class="btn btn-warning" id="k">K</button></td>
+                            <td><button type="button" class="btn btn-warning" id="l">L</button></td>
+                            <td><button type="button" class="btn btn-warning" id="m">M</button></td>
+                            <td><button type="button" class="btn btn-warning" id="n">N</button></td>
+                            <td><button type="button" class="btn btn-warning" id="o">O</button></td>
+                            <td><button type="button" class="btn btn-warning" id="p">P</button></td>
+                            <td><button type="button" class="btn btn-warning" id="r">R</button></td>
+                            <td><button type="button" class="btn btn-warning" id="q">Q</button></td>
+                            <td><button type="button" class="btn btn-warning" id="t">T</button></td>
+                        </tr>
+                        <tr class="letters">
+                            <td><button type="button" class="btn btn-warning" id="s">S</button></td>
+                            <td><button type="button" class="btn btn-warning" id="u">U</button></td>
+                            <td><button type="button" class="btn btn-warning" id="v">V</button></td>
+                            <td><button type="button" class="btn btn-warning" id="w">W</button></td>
+                            <td><button type="button" class="btn btn-warning" id="x">X</button></td>
+                            <td><button type="button" class="btn btn-warning" id="y">Y</button></td>
+                            <td><button type="button" class="btn btn-warning" id="z">Z</button></td>
+                        </tr>
+                    </table>
+                    <button id="gameOverPopUp"></button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../scripts.js"></script>
+</body>
+</html>
