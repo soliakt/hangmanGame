@@ -33,9 +33,7 @@ window.onload = function () {
     var correctLetter = false;
 
     // Esto recorre todos los id y en caso de que algun evento se haya producido llama a la funcion resalta
-    for (var i = 0; i < totalLetras; i++) document.getElementById(letras[i]).addEventListener('click', function() {
-        letterClicked(availableLetters);
-    });
+    for (var i = 0; i < totalLetras; i++) document.getElementById(letras[i]).addEventListener('click', letterClicked);
     
 
 
@@ -53,13 +51,13 @@ window.onload = function () {
     wordInHTML.innerHTML = wordInDiscovery.toUpperCase();
 
 
-    function letterClicked(availableLettersFunc) {
+    function letterClicked() {
         correctLetter = false;
         wordInDiscovery = "";
         for (var p = 0; p < wordLenght; p++) {
             if (this.id == wordToDiscover[p]) {
                 correctLetter = true;
-                availableLettersFunc--;
+                availableLetters--;
                 for (var m = 0; m < wordLenght; m++) {
                     if (m == p) arrayWordInProgress[m] = event.target.id;
                 }
@@ -70,7 +68,7 @@ window.onload = function () {
         }
         for (var f = 0; f < wordLenght; f++) wordInDiscovery += arrayWordInProgress[f];
         if (correctLetter == false) remainingLives--
-        else if (availableLettersFunc == 0) gamePassedPopUp();
+        else if (availableLetters == 0) gamePassedPopUp();
         else if (remainingLives < 1) gameOverPopUp();
 
         // Obtener el elemento del texto (h4) que vamos a sustituir por nuestra palabra oculta
