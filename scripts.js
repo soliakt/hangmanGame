@@ -4,38 +4,42 @@
     Práctica: Juego del ahorcado
 */
 
-generateGameContent();
-function generateGameContent() {
-    // Definimos debajo de qué elemento vamos a generar la tabla (parentElement)
-    const parentElement = document.getElementById('gameContent__letters__lettersThemselves');
-    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-    const table = document.createElement('table');
-    const numRows = [5, 6, 7, 8];
-    var contadorletras = 0;
-
-    for (let i = 0; i < numRows.length; i++) {
-        const row = document.createElement('tr');
-        row.classList.add('letters');
-        for (let j = 0; j < numRows[i]; j++) {
-            const letter = alphabet.charAt(contadorletras);
-            const cell = document.createElement('td');
-            cell.innerHTML = `<button type="button" class="btn btn-warning" id="${letter.toLowerCase()}">${letter}</button>`;
-            row.appendChild(cell);
-            contadorletras++;
-        }
-        table.appendChild(row);
-    }
-    // Añadir la tabla al elemento padre
-    parentElement.appendChild(table);
-}
 
 
 window.onload = function () {
-   
     // Añadir event listener del botón inicial
     const playButton = document.getElementById('playButton');
-    playButton.addEventListener('click', showGameContents)
+    playButton.addEventListener('click', function(){
+        generateGameContent();
+        showGameContents();
+        recorreIDS();
+    });
+
+    function generateGameContent() {
+        // Definimos debajo de qué elemento vamos a generar la tabla (parentElement)
+        const parentElement = document.getElementById('gameContent__letters__lettersThemselves');
+        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    
+        const table = document.createElement('table');
+        const numRows = [5, 6, 7, 8];
+        var contadorletras = 0;
+    
+        for (let i = 0; i < numRows.length; i++) {
+            const row = document.createElement('tr');
+            row.classList.add('letters');
+            for (let j = 0; j < numRows[i]; j++) {
+                const letter = alphabet.charAt(contadorletras);
+                const cell = document.createElement('td');
+                cell.innerHTML = `<button type="button" class="btn btn-warning" id="${letter.toLowerCase()}">${letter}</button>`;
+                row.appendChild(cell);
+                contadorletras++;
+            }
+            table.appendChild(row);
+        }
+        // Añadir la tabla al elemento padre
+        parentElement.appendChild(table);
+    }
+    
 
     
     function showGameContents() {
@@ -47,7 +51,6 @@ window.onload = function () {
  
     var letras = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
     var totalLetras = letras.length;
-    console.log(totalLetras)
 
 
 
@@ -60,35 +63,39 @@ window.onload = function () {
     var arrayWordInProgress = [];
     var correctLetter = false;
 
-    // Recorre los IDs y agrega eventos solo si el elemento existe
-    for (var i = 0; i < totalLetras; i++) {
-        const elemento = document.getElementById(letras[i]);
-        console.log(elemento)
-        /*if (elemento) {
-            elemento.addEventListener('click', letterClicked);
-        } else {
-            console.error('Elemento no encontrado para el ID:', letras[i]);
-        }*/
+    function recorreIDS(){
+        // Recorre los IDs y agrega eventos solo si el elemento existe
+        for (var i = 0; i < totalLetras; i++) {
+            const elemento = document.getElementById(letras[i]);
+            console.log(elemento)
+            if (elemento) {
+                elemento.addEventListener('click', letterClicked);
+            } else {
+                console.error('Elemento no encontrado para el ID:', letras[i]);
+            }
+        }
+          // Esto recorre todos los id y en caso de que algun evento se haya producido llama a la funcion resalta
+        for (var i = 0; i < totalLetras; i++) document.getElementById(letras[i]).addEventListener('click', letterClicked);
+        
+
+
+        for (var i = 0; i < wordLenght; i++) arrayWordInProgress.push("_ ");
+        for (var f = 0; f < wordLenght; f++) wordInDiscovery += arrayWordInProgress[f];
+
+        // Obtener el elemento del texto (h4) que vamos a sustituir por nuestra palabra oculta y por nuestras vidas
+        const wordInHTML = document.getElementById('hiddenWord');
+        const livesInHTML = document.getElementById('availableLives');
+        // Aqui ponemos flex al display de la foto para que aparezca
+        document.getElementById(remainingLives).style.display = "flex"
+
+        // Reemplazarlos
+        livesInHTML.innerHTML = "Vidas restantes: " + remainingLives + "\n";
+        wordInHTML.innerHTML = wordInDiscovery.toUpperCase();
+
     }
+  
 
-    // Esto recorre todos los id y en caso de que algun evento se haya producido llama a la funcion resalta
-    for (var i = 0; i < totalLetras; i++) document.getElementById(letras[i]).addEventListener('click', letterClicked);
-    
-
-
-    for (var i = 0; i < wordLenght; i++) arrayWordInProgress.push("_ ");
-    for (var f = 0; f < wordLenght; f++) wordInDiscovery += arrayWordInProgress[f];
-
-    // Obtener el elemento del texto (h4) que vamos a sustituir por nuestra palabra oculta y por nuestras vidas
-    const wordInHTML = document.getElementById('hiddenWord');
-    const livesInHTML = document.getElementById('availableLives');
-    // Aqui ponemos flex al display de la foto para que aparezca
-    document.getElementById(remainingLives).style.display = "flex"
-
-    // Reemplazarlos
-    livesInHTML.innerHTML = "Vidas restantes: " + remainingLives + "\n";
-    wordInHTML.innerHTML = wordInDiscovery.toUpperCase();
-
+  
 
     function letterClicked() {
         correctLetter = false;
