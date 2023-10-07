@@ -22,17 +22,17 @@ window.onload = function () {
     
         const table = document.createElement('table');
         const numRows = [5, 6, 7, 8];
-        var contadorletras = 0;
+        var lettersCounter = 0;
     
         for (let i = 0; i < numRows.length; i++) {
             const row = document.createElement('tr');
             row.classList.add('letters');
             for (let j = 0; j < numRows[i]; j++) {
-                const letter = alphabet.charAt(contadorletras);
+                const letter = alphabet.charAt(lettersCounter);
                 const cell = document.createElement('td');
                 cell.innerHTML = `<button type="button" class="btn btn-warning" id="${letter.toLowerCase()}">${letter}</button>`;
                 row.appendChild(cell);
-                contadorletras++;
+                lettersCounter++;
             }
             table.appendChild(row);
         }
@@ -52,8 +52,6 @@ window.onload = function () {
     var letras = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
     var totalLetras = letras.length;
 
-
-
     var remainingLives = 6;
     var conjuntoDePalabras = ["hamburguesa", "arenal", "meteorito"];
     for (var i = 0; i < conjuntoDePalabras.length; i++) var wordToDiscover = conjuntoDePalabras[Math.floor(Math.random() * conjuntoDePalabras.length)];
@@ -64,21 +62,8 @@ window.onload = function () {
     var correctLetter = false;
 
     function recorreIDS(){
-        // Recorre los IDs y agrega eventos solo si el elemento existe
-        for (var i = 0; i < totalLetras; i++) {
-            const elemento = document.getElementById(letras[i]);
-            console.log(elemento)
-            if (elemento) {
-                elemento.addEventListener('click', letterClicked);
-            } else {
-                console.error('Elemento no encontrado para el ID:', letras[i]);
-            }
-        }
-          // Esto recorre todos los id y en caso de que algun evento se haya producido llama a la funcion resalta
+        // Esto recorre todos los id y en caso de que algun evento se haya producido llama a la funcion letterClicked
         for (var i = 0; i < totalLetras; i++) document.getElementById(letras[i]).addEventListener('click', letterClicked);
-        
-
-
         for (var i = 0; i < wordLenght; i++) arrayWordInProgress.push("_ ");
         for (var f = 0; f < wordLenght; f++) wordInDiscovery += arrayWordInProgress[f];
 
@@ -93,10 +78,7 @@ window.onload = function () {
         wordInHTML.innerHTML = wordInDiscovery.toUpperCase();
 
     }
-  
-
-  
-
+ 
     function letterClicked() {
         correctLetter = false;
         wordInDiscovery = "";
