@@ -57,7 +57,6 @@ window.onload = function () {
     var correctLetter = false;
  
     function letterClicked(wordLength, id, availableLetters, arrayWordInProgress, wordInDiscovery) {
-
         correctLetter = false;
         wordInDiscovery = "";
         // Va letra a letra comprobando el string de la palabra a descubrir a ver si coincide alguna letra con la introducida
@@ -76,19 +75,16 @@ window.onload = function () {
             event.target.style.color = "white";
         }
         for (var f = 0; f < wordLengthBueno; f++) wordInDiscovery += arrayWordInProgress[f];
+        if (correctLetter == false) remainingLives--;
         // Obtener el elemento del texto (h4) que vamos a sustituir por nuestra palabra oculta
         var wordInHTML = document.getElementById('hiddenWord');
         var livesInHTML = document.getElementById('availableLives');
         // Reemplazarlo
         livesInHTML.innerHTML = "Vidas restantes: " + remainingLives + "\n";
         wordInHTML.innerHTML = wordInDiscovery.toUpperCase();
-        if (correctLetter == false) remainingLives--;
-        else if (availableLetters == 0) gamePassedPopUp();
         if (remainingLives < 1) gameOverPopUp();
-
-
+        else if (availableLetters == 0) gamePassedPopUp();
         if(remainingLives > 5) document.getElementById(remainingLives).style.display = "flex";
-
         else {
             document.getElementById(remainingLives + 1).style.display = "none"
             document.getElementById(remainingLives).style.display = "flex"
@@ -101,7 +97,6 @@ window.onload = function () {
         wordToDiscover = conjuntoDePalabras[Math.floor(Math.random() * conjuntoDePalabras.length)];
         wordLengthBueno = wordToDiscover.length;
         var availableLetters = wordLengthBueno;
-
     
         var arrayWordInProgress = [];
         correctLetter = false;
