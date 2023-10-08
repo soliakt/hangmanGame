@@ -46,18 +46,12 @@ window.onload = function () {
         document.getElementById('gameContent').style.display = "flex";
     }
 
-
-    var letras = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-    var totalLetras = letras.length;
     var remainingLives;
+    let availableLetters; 
 
-    var wordLenght = wordToDiscover.length;
 
-
-    var correctLetter = false;
- 
-    function letterClicked(wordLength, id, availableLetters, arrayWordInProgress, wordInDiscovery) {
-        correctLetter = false;
+    function letterClicked(wordLength, id, arrayWordInProgress, wordInDiscovery) {
+        var correctLetter = false;
         wordInDiscovery = "";
         // Va letra a letra comprobando el string de la palabra a descubrir a ver si coincide alguna letra con la introducida
         for (var p = 0; p < wordLength; p++) {
@@ -92,13 +86,15 @@ window.onload = function () {
 
     }
     function resetGame() {
+        var letras = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+        var totalLetras = letras.length;
         remainingLives = 6;
         document.getElementById(remainingLives).style.display = "flex";
         document.getElementById(0).style.display = "none";
         var conjuntoDePalabras = ["hamburguesa", "arenal", "meteorito"];
         wordToDiscover = conjuntoDePalabras[Math.floor(Math.random() * conjuntoDePalabras.length)];
         wordLengthBueno = wordToDiscover.length;
-        var availableLetters = wordLengthBueno;
+        availableLetters = wordLengthBueno;
     
         var arrayWordInProgress = [];
         correctLetter = false;
@@ -126,7 +122,7 @@ window.onload = function () {
         // Hasta aqui esta bien
         // Esto recorre todos los id y en caso de que algun evento se haya producido llama a la funcion letterClicked
         for (var i = 0; i < totalLetras; i++) document.getElementById(letras[i]).addEventListener('click', function(){
-            letterClicked(wordLengthBueno, this.id, availableLetters, arrayWordInProgress, wordInDiscovery)
+            letterClicked(wordLengthBueno, this.id, arrayWordInProgress, wordInDiscovery)
         });
         
     }
