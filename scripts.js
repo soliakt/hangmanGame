@@ -9,10 +9,7 @@
 window.onload = function () {
     // Añadir event listener del botón inicial
     const playButton = document.getElementById('playButton');
-    playButton.addEventListener('click', function(){
-        showGameContents();
-        recorreIDS();
-    });
+    playButton.addEventListener('click', showGameContents);
 
     function generateGameContent() {
         // Definimos debajo de qué elemento vamos a generar la tabla (parentElement)
@@ -58,23 +55,9 @@ window.onload = function () {
 
 
     var correctLetter = false;
-
-
-    function recorreIDS(){
-
-        // Obtener el elemento del texto (h4) que vamos a sustituir por nuestra palabra oculta y por nuestras vidas
-        const wordInHTML = document.getElementById('hiddenWord');
-        const livesInHTML = document.getElementById('availableLives');
-        // Aqui ponemos flex al display de la foto para que aparezca
-        document.getElementById(remainingLives).style.display = "flex"
-
-        // Reemplazarlos
-        //livesInHTML.innerHTML = "Vidas restantes: " + remainingLives + "\n";
-        //wordInHTML.innerHTML = wordInDiscovery.toUpperCase();
-
-    }
  
     function letterClicked(wordLength, id, availableLetters, arrayWordInProgress, wordInDiscovery) {
+
         correctLetter = false;
         wordInDiscovery = "";
         // Va letra a letra comprobando el string de la palabra a descubrir a ver si coincide alguna letra con la introducida
@@ -94,8 +77,8 @@ window.onload = function () {
         }
         for (var f = 0; f < wordLengthBueno; f++) wordInDiscovery += arrayWordInProgress[f];
         // Obtener el elemento del texto (h4) que vamos a sustituir por nuestra palabra oculta
-        wordInHTML = document.getElementById('hiddenWord');
-        livesInHTML = document.getElementById('availableLives');
+        var wordInHTML = document.getElementById('hiddenWord');
+        var livesInHTML = document.getElementById('availableLives');
         // Reemplazarlo
         livesInHTML.innerHTML = "Vidas restantes: " + remainingLives + "\n";
         wordInHTML.innerHTML = wordInDiscovery.toUpperCase();
@@ -113,6 +96,7 @@ window.onload = function () {
     }
     function resetGame() {
         remainingLives = 6;
+        document.getElementById(remainingLives).style.display = "flex";
         var conjuntoDePalabras = ["hamburguesa", "arenal", "meteorito"];
         wordToDiscover = conjuntoDePalabras[Math.floor(Math.random() * conjuntoDePalabras.length)];
         wordLengthBueno = wordToDiscover.length;
