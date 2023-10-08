@@ -89,10 +89,12 @@ window.onload = function () {
             document.getElementById(remainingLives + 1).style.display = "none"
             document.getElementById(remainingLives).style.display = "flex"
         }
+
     }
     function resetGame() {
         remainingLives = 6;
         document.getElementById(remainingLives).style.display = "flex";
+        document.getElementById(0).style.display = "none";
         var conjuntoDePalabras = ["hamburguesa", "arenal", "meteorito"];
         wordToDiscover = conjuntoDePalabras[Math.floor(Math.random() * conjuntoDePalabras.length)];
         wordLengthBueno = wordToDiscover.length;
