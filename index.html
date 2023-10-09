@@ -18,9 +18,22 @@
 <body>
     <div>
         <div id="initialContent" class="text-center">
-            <h1>El AHORCADO</h1>
+            <h1>EL AHORCADO</h1>
             <p>The game</p>
-            <button class="btn btn-danger" id="playButton">JUGAR</button>
+            <div class="initialContentButtons">
+                <button class="initialContentButtons__play btn btn-danger" id="playButton1">JUGAR</button>
+                <button class="initialContentButtons__info btn" id="infoButton">INSTRUCCIONES</button>
+            </div>
+        </div>
+
+        <div id="infoContent" class="infoContent">
+            <h1>Instrucciones</h1>
+            <p>El juego del ahorcado consiste en adivinar una palabra, letra por letra.</p>
+            <p>Tienes 6 de intentos para adivinar la palabra. Cada letra incorrecta te acerca más
+                al ahorcamiento.</p>
+            <p>Para jugar, simplemente haz clic en la letra que crees que forma parte de la palabra secreta.</p>
+            <p>¡Buena suerte!</p>
+            <button class="btn btn-primary" id="playButton2">Jugar</button>
         </div>
 
         <div id="gameContent" class="gameContent">

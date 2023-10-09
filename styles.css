@@ -15,11 +15,72 @@ h1{
     display: none;
 }
 
+/* Estilos para el contenedor de la información */
+.infoContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+.infoContent h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: darkgray !important;
+}
+
+.infoContent p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.infoContent .btn {
+    width: 150px;
+    justify-content: center;
+}
+
+/* Estilos adicionales para el botón */
+.infoContent .btn.btn-primary {
+    background-color: rgba(202, 0, 0, 0.702) !important;
+    border: none;
+}
+
+.infoContent .btn.btn-primary:hover {
+    background-color: rgba(202, 0, 0, 0.914) !important;
+}
+  
+
 #initialContent p {
     color: white;
     font-size: 2em !important;
 }
 
+.initialContentButtons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.initialContentButtons__play, .initialContentButtons__info {
+    width: 150px;
+}
+
+.initialContentButtons__play{
+    background-color: rgba(202, 0, 0, 0.702) !important;
+}
+
+.initialContentButtons__info {
+    background-color: rgba(0, 0, 0, 0.246) !important;
+    color: white !important;
+    width: 150px !important;
+    border: 1px solid rgba(0, 0, 0, 0.176) !important;
+}
 
 .puppet{
     display: none;
@@ -53,4 +114,7 @@ h1{
     justify-content: space-around;
 }
 
-
+.infoContent {
+    display: none;
+    flex-direction: column;
+}
