@@ -76,13 +76,16 @@ window.onload = function () {
         // Reemplazarlo
         livesInHTML.innerHTML = "Vidas restantes: " + remainingLives + "\n";
         wordInHTML.innerHTML = wordInDiscovery.toUpperCase();
-        if (remainingLives < 1) gameOverPopUp();
-        else if (availableLetters == 0) gamePassedPopUp();
-        if(remainingLives > 5) document.getElementById(remainingLives).style.display = "flex";
+        if (remainingLives < 1) gameOverPopUp(); 
+        else if(remainingLives > 5) {
+            document.getElementById(remainingLives).style.display = "flex";
+            document.getElementById(0).style.display = "none";
+        }
         else {
             document.getElementById(remainingLives + 1).style.display = "none"
             document.getElementById(remainingLives).style.display = "flex"
         }
+        if (availableLetters == 0) gamePassedPopUp();
 
     }
     function resetGame() {
@@ -90,7 +93,9 @@ window.onload = function () {
         var totalLetras = letras.length;
         remainingLives = 6;
         document.getElementById(remainingLives).style.display = "flex";
-        document.getElementById(0).style.display = "none";
+        for (i = 0; i < 6; i++) document.getElementById(i).style.display = "none";
+
+        
         var conjuntoDePalabras = ["hamburguesa", "arenal", "meteorito"];
         wordToDiscover = conjuntoDePalabras[Math.floor(Math.random() * conjuntoDePalabras.length)];
         wordLengthBueno = wordToDiscover.length;
@@ -123,6 +128,11 @@ window.onload = function () {
         // Esto recorre todos los id y en caso de que algun evento se haya producido llama a la funcion letterClicked
         for (var i = 0; i < totalLetras; i++) document.getElementById(letras[i]).addEventListener('click', function(){
             letterClicked(wordLengthBueno, this.id, arrayWordInProgress, wordInDiscovery)
+        });
+
+        window.addEventListener('keydown', function(event) {
+            const key = event.key;
+            letterClicked(wordLengthBueno, key, availableLetters, arrayWordInProgress, wordInDiscovery);
         });
         
     }
