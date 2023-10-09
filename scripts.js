@@ -1,8 +1,3 @@
-/*
-    Alumno: Víctor Gimeno Sanz
-    NIA: 10017766
-    Práctica: Juego del ahorcado
-*/
 window.onload = function () {
     // Añadir event listener del botón inicial
     const playButton1 = document.getElementById('playButton1');
@@ -77,7 +72,7 @@ window.onload = function () {
                 else document.getElementById(id).style.backgroundColor = "red";
                 document.getElementById(id).style.color = "white";
             }
-            for (var f = 0; f < wordLengthBueno; f++) wordInDiscovery += arrayWordInProgress[f];
+            for (var f = 0; f < wordLength; f++) wordInDiscovery += arrayWordInProgress[f];
             if (correctLetter == false) remainingLives--;
             // Obtener el elemento del texto (h4) que vamos a sustituir por nuestra palabra oculta
             var wordInHTML = document.getElementById('hiddenWord');
@@ -100,14 +95,13 @@ window.onload = function () {
     function resetGame() {
         var attemptedLetters = []
         var letras = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-        var totalLetras = letras.length;
         remainingLives = 6;
         document.getElementById(remainingLives).style.display = "flex";
         for (i = 0; i < 6; i++) document.getElementById(i).style.display = "none";
         var conjuntoDePalabras = ["hamburguesa", "arenal", "meteorito"];
         wordToDiscover = conjuntoDePalabras[Math.floor(Math.random() * conjuntoDePalabras.length)];
-        wordLengthBueno = wordToDiscover.length;
-        availableLetters = wordLengthBueno;
+        wordLength = wordToDiscover.length;
+        availableLetters = wordLength;
     
         var arrayWordInProgress = [];
         correctLetter = false;
@@ -123,24 +117,24 @@ window.onload = function () {
         const livesInHTML = document.getElementById('availableLives');
         livesInHTML.innerHTML = "Vidas restantes: " + remainingLives + "\n";
         // Rellenamos cada letra del array con _
-        for (var i = 0; i < wordLengthBueno; i++) {
+        for (var i = 0; i < wordLength; i++) {
             arrayWordInProgress.push("_ ");
         }
 
         // Aqui creamos la palabra vacía con los _ para mostrarlo en el html
-        for (var f = 0; f < wordLengthBueno; f++) wordInDiscovery += arrayWordInProgress[f];
+        for (var f = 0; f < wordLength; f++) wordInDiscovery += arrayWordInProgress[f];
         wordInHTML.innerHTML = wordInDiscovery.toUpperCase();
 
         // Esto recorre todos los id y en caso de que algun evento se haya producido llama a la funcion letterClicked
-        for (var i = 0; i < totalLetras; i++) document.getElementById(letras[i]).addEventListener('click', function(){
-            letterClicked(wordLengthBueno, this.id, arrayWordInProgress, wordInDiscovery, attemptedLetters)
+        for (var i = 0; i < letras.length; i++) document.getElementById(letras[i]).addEventListener('click', function(){
+            letterClicked(wordLength, this.id, arrayWordInProgress, wordInDiscovery, attemptedLetters)
         });
 
         window.addEventListener('keydown', function(event) {
             const key = event.key.toLowerCase();
             // Esto evita incorporar teclas que no sean letras
             if (letras.includes(key)) {
-                letterClicked(wordLengthBueno, key, arrayWordInProgress, wordInDiscovery, attemptedLetters);
+                letterClicked(wordLength, key, arrayWordInProgress, wordInDiscovery, attemptedLetters);
             }
         });
         
